@@ -14,16 +14,14 @@ export default function DisplayArea() {
             dispatch( fetchData() )
 
         // eslint-disable-next-line
-    }, [currentTab])
-
-    console.log(currentTab)
+    }, [currentTab, listData])
 
     return (
         <Grid container>
             {
                 listData.map( (data, index) => (
-                    <Grid item xs={4}>
-                        <Card key={index} data={data} />
+                    <Grid key={index} item xs={4}>
+                        <Card data={data} />
                     </Grid>
                 ))
             }

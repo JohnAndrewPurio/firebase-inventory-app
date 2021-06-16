@@ -30,11 +30,23 @@ export const fetchData = () => {
     const firestoreDB = firestore
 
     return async (dispatch, getState) => {
-        const { currentTabIndex } = getState()
+        const { currentTabIndex, listData } = getState()
 
         try {
             const snapshot = await firestoreDB.collection(collectionName).doc( documents[currentTabIndex - 1] ).get()
-            const data = Object.values( snapshot.data() )
+            let data = Object.values( snapshot.data() ).sort( (a, b) => a.name - b.name )
+
+            if(listData.length === data.length) 
+                return
+
+            data = data.map( ele => {
+                console.log(ele)
+
+                if(!(ele.quantity))
+                    ele.quantity = 1
+
+                return ele
+            })
 
             dispatch( storeDataFromDB(data) )
         } catch (e) {
@@ -45,7 +57,6 @@ export const fetchData = () => {
 
 export const addNewDeviceToDB = (data) => {
     const firestoreDB = firestore
-    console.log(data)
 
     return async (dispatch, getState) => {
         const { currentTabIndex } = getState()
@@ -54,12 +65,17 @@ export const addNewDeviceToDB = (data) => {
 
         try {
             const dbRef = firestoreDB.collection(collectionName).doc( documents[currentTabIndex - 1] )
+            await dbRef.set(data, { merge: true })
 
-            const addData = await dbRef.set(data, { merge: true })
-
-            console.log(addData, currentTabIndex, collectionName)
+            dispatch( fetchData() )
         } catch (error) {
             console.log(error)
         }
+    }
+}
+
+export const deleteDeviceFromDB = (data) => {
+    return async (dispatch, getState) => {
+        
     }
 }
