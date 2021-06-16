@@ -13,7 +13,6 @@ export default function App() {
   const user = useSelector(state => state.user)
 
   const logInHandler = (user) => {
-    console.log(firebase.auth().currentUser)
     dispatch(logInUser(user))
   }
 
@@ -21,6 +20,8 @@ export default function App() {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(logInHandler)
 
     return () => unregisterAuthObserver() // Make sure we un-register Firebase observers when the component unmounts.
+
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -31,6 +32,8 @@ export default function App() {
     }
 
     history.push('/')
+
+    // eslint-disable-next-line
   }, [user])
 
   return (

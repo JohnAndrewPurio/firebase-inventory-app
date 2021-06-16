@@ -5,5 +5,9 @@ export const useStyles = makeStyles( (theme) => ({
         padding: theme.spacing(2),
         margin: theme.spacing(3),
     },
-    
+    image: {
+        height: '15vmin',
+        width: '100%',
+        objectFit: 'cover'
+    }
 }))

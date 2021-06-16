@@ -5,6 +5,9 @@ export const useStyles = makeStyles((theme) => ({
         top: 'auto',
         bottom: 0,
     },
+    button: {
+        margin: theme.spacing(1),
+    },
     grow: {
         flexGrow: 1,
     },

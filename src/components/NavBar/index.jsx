@@ -21,7 +21,7 @@ export default function NavBar() {
                 textColor="primary"
                 centered
             >
-                <Tab label="All" />
+                <Tab label="All" disabled />
                 <Tab label="Mobile" />
                 <Tab label="Laptops" />
                 <Tab label="Appliance" />
