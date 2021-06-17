@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 
 export const useStyles = makeStyles((theme) => ({
     appBar: {
-        top: '92.5vh',
+        // top: 'auto',
         bottom: 0,
     },
     button: {
