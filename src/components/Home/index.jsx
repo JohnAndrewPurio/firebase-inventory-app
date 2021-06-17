@@ -1,3 +1,4 @@
+import { CssBaseline } from '@material-ui/core'
 import NavBar from '../NavBar'
 import ApplicationBar from '../ApplicationBar'
 import { useSelector } from 'react-redux'
@@ -13,6 +14,7 @@ export default function Home() {
 
     return (
         <div>
+            <CssBaseline />
             <NavBar />
             <AddNewItem />
             <DisplayArea />
