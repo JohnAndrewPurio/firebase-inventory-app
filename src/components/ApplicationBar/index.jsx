@@ -1,5 +1,5 @@
 import { useStyles } from './styles'
-import { AppBar, Button, Toolbar, IconButton, Fab, Typography } from '@material-ui/core'
+import { CssBaseline, AppBar, Button, Toolbar, IconButton, Fab, Typography } from '@material-ui/core'
 import { Add, Search, ExitToApp } from '@material-ui/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -23,6 +23,7 @@ export default function ApplicationBar() {
 
     return (
         <AppBar position="fixed" color="primary" className={classes.appBar}>
+            <CssBaseline />
             <Toolbar>
                 <Typography edge="start" color="inherit" >
                     {user.displayName}

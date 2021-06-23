@@ -49,8 +49,8 @@ export default function InputFields() {
             </Grid>
 
             <Grid item xs={12}>
-                <Grid container justify="center" >
-                    <Grid item justify="center" xs={4}>
+                <Grid container >
+                    <Grid item xs={3}>
                         <TextField
                             inputRef={price}
                             id="price"
@@ -60,11 +60,11 @@ export default function InputFields() {
                             color="primary"
                         />
                     </Grid>
-                    <Grid item justify="center" xs={8}>
+                    <Grid item xs={8}>
                         <TextField
                             inputRef={imageURL}
-                            fullWidth
                             id="imageUrl"
+                            fullWidth
                             className={classes.input}
                             label="Image Source (URL)"
                             variant="outlined"

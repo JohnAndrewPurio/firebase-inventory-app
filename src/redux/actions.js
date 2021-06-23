@@ -30,19 +30,14 @@ export const fetchData = () => {
     const firestoreDB = firestore
 
     return async (dispatch, getState) => {
-        const { currentTabIndex, listData } = getState()
+        const { currentTabIndex } = getState()
 
         try {
             const snapshot = await firestoreDB.collection(collectionName).doc( documents[currentTabIndex - 1] ).get()
-            let data = Object.values( snapshot.data() ).sort( (a, b) => a.name - b.name )
-
-            if(listData.length === data.length) 
-                return
+            let data = Object.values( snapshot.data() ).sort( (a, b) => a.name > b.name ? 1: -1 )
 
             data = data.map( ele => {
-                console.log(ele)
-
-                if(!(ele.quantity))
+                if(ele.quantity === undefined)
                     ele.quantity = 1
 
                 return ele
@@ -75,7 +70,39 @@ export const addNewDeviceToDB = (data) => {
 }
 
 export const deleteDeviceFromDB = (data) => {
+    const firestoreDB = firestore
+
     return async (dispatch, getState) => {
-        
+        const { currentTabIndex } = getState()
+
+        try {
+            const dbRef = firestoreDB.collection(collectionName).doc( documents[currentTabIndex - 1] )
+            await dbRef.update({
+                [data]: firebase.firestore.FieldValue.delete()
+            })
+
+            dispatch( fetchData() )
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const changeItemQuantityInDB = (data) => {
+    const firestoreDB = firestore
+
+    return async (dispatch, getState) => {
+        const { currentTabIndex } = getState()
+
+        try {
+            const dbRef = firestoreDB.collection(collectionName).doc( documents[currentTabIndex - 1] )
+            await dbRef.update({
+                [data.name]: data
+            })
+
+            dispatch( fetchData() )
+        } catch(error) {
+            console.log(error)
+        }
     }
 }

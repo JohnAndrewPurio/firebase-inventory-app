@@ -9,7 +9,8 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         margin: theme.spacing(3),
         height: '50vmin',
-        position: 'relative'
+        position: 'relative',
+        overflow: 'hidden'
     },
     image: {
         height: '15vmin',
@@ -30,8 +31,11 @@ export const useStyles = makeStyles((theme) => ({
     },
     bottom: {
         position: 'absolute',
-        bottom: theme.spacing(2),
-        width: '95%',
+        padding: `0 ${theme.spacing(2)}`,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        backgroundColor: 'white'
     }
 }))
 

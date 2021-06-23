@@ -14,7 +14,7 @@ export default function DisplayArea() {
             dispatch( fetchData() )
 
         // eslint-disable-next-line
-    }, [currentTab, listData])
+    }, [currentTab, listData.length])
 
     return (
         <Grid container>
